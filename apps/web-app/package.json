@@ -1,0 +1,30 @@
+{
+  "name": "@vortex/web-app",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint"
+  },
+  "dependencies": {
+    "@metamask/smart-accounts-kit": "^1.6.0",
+    "@metamask/x402": "^0.2.0",
+    "@vortex/smart-account-core": "workspace:*",
+    "@x402/core": "^2.14.0",
+    "@x402/fetch": "^2.14.0",
+    "next": "16.2.7",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
+    "viem": "^2.21.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "eslint": "^9.0.0",
+    "eslint-config-next": "16.2.7",
+    "typescript": "^5.0.0"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "name": "vortex-agentic-pay",
+  "private": true,
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm": ">=8.0.0"
+  },
+  "scripts": {
+    "build": "turbo build",
+    "dev": "turbo dev",
+    "dev:web": "pnpm --filter @vortex/web-app dev",
+    "dev:agent": "pnpm --filter @vortex/venice-agent dev",
+    "dev:x402": "pnpm --filter @vortex/x402-server dev",
+    "lint": "turbo lint"
+  },
+  "devDependencies": {
+    "turbo": "latest"
+  },
+  "packageManager": "pnpm@11.5.1"
+}
