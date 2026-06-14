@@ -1,0 +1,32 @@
+FROM node:24-slim AS base
+
+# Install build dependencies for native modules on Debian-slim (glibc based)
+RUN apt-get update && apt-get install -y \
+    python3 \
+    make \
+    g++ \
+    gcc \
+    git \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+
+# Increase pnpm network timeout and retry tolerance configuration
+ENV PNPM_CONFIG_FETCH_TIMEOUT=300000
+ENV PNPM_CONFIG_FETCH_RETRY_MAXTIMEOUT=600000
+
+# Enable and configure pnpm to match local project packageManager
+RUN corepack enable && corepack prepare pnpm@11.5.1 --activate
+
+# Copy workspace configurations and package manifests
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml .npmrc ./
+COPY apps/web-app/package.json ./apps/web-app/
+COPY apps/x402-server/package.json ./apps/x402-server/
+COPY packages/smart-account-core/package.json ./packages/smart-account-core/
+COPY packages/venice-agent/package.json ./packages/venice-agent/
+
+# Install dependencies with extended network tolerance
+RUN pnpm install --no-frozen-lockfile
+
+# Copy the rest of the monorepo source code
+COPY . .

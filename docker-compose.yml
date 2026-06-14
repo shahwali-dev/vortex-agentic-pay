@@ -1,0 +1,50 @@
+services:
+  web-app:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    working_dir: /app/apps/web-app
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/apps/web-app/node_modules
+      - /app/apps/web-app/.next
+      - /app/packages/smart-account-core/node_modules
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+    command: pnpm dev
+
+  x402-server:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    working_dir: /app/apps/x402-server
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/apps/x402-server/node_modules
+      - /app/apps/x402-server/dist
+      - /app/packages/smart-account-core/node_modules
+    ports:
+      - "4402:4402"
+    environment:
+      - NODE_ENV=development
+    command: sh -c "pnpm exec tsc --watch & node --watch dist/index.js"
+
+  venice-agent:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    working_dir: /app/packages/venice-agent
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/packages/venice-agent/node_modules
+      - /app/packages/smart-account-core/node_modules
+    ports:
+      - "3001:3001"
+    environment:
+      - NODE_ENV=development
+    command: node --watch src/index.js
