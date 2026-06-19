@@ -1,0 +1,18 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- پس منظر -->
+  <circle cx="256" cy="256" r="256" fill="#0b0e14"/>
+  
+  <!-- Vortex V Shape (Gradient Effect) -->
+  <path d="M120 150L256 360L392 150" stroke="url(#paint0_linear)" stroke-width="40" stroke-linecap="round" stroke-linejoin="round"/>
+  
+  <!-- Pay/Energy Bolt (Center) -->
+  <path d="M256 180L230 250H280L256 320" fill="#ffffff"/>
+  
+  <!-- Gradient Definition -->
+  <defs>
+    <linearGradient id="paint0_linear" x1="120" y1="150" x2="392" y2="360" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#00ffcc"/>
+      <stop offset="1" stop-color="#7000ff"/>
+    </linearGradient>
+  </defs>
+</svg>
