@@ -41,7 +41,8 @@ export default function Home() {
         if (code && code !== '0x') {
           const walletClient = createWalletClient({
             chain: baseSepolia,
-            transport: custom(window.ethereum),
+            transport: custom((window as any).ethereum),
+            account: address as `0x${string}`,
           });
           const existingAccount = await toMetaMaskSmartAccount({
             client: publicClient,
@@ -79,8 +80,8 @@ export default function Home() {
       const hash = await bundlerClient.sendUserOperation({
         account: smartAccount,
         calls: [{ to: signerAddress as `0x${string}`, value: parseEther('0.0001') }],
-        maxFeePerGas: 1_000_000_000n,
-        maxPriorityFeePerGas: 1_000_000_000n,
+        maxFeePerGas: BigInt(1000000000),
+        maxPriorityFeePerGas: BigInt(1000000000),
       });
       
       setStatus(`✅ User operation sent! Hash: ${hash.slice(0, 16)}...`);

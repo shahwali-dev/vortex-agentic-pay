@@ -4,6 +4,9 @@
       "dependsOn": ["^build"],
       "outputs": [".next/**", "dist/**", "build/**"]
     },
+    "@vortex/smart-account-core#build": {
+      "outputs": []
+    },
     "dev": {
       "cache": false,
       "persistent": true

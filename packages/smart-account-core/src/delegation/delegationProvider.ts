@@ -17,7 +17,8 @@ const publicClient = createPublicClient({
 
 export async function createSmartAccount(signerAddress: string, walletClient: any) {
   const smartAccount = await toMetaMaskSmartAccount({
-    client: publicClient,
+    // cast to any to avoid type incompatibility between different viem types
+    client: publicClient as any,
     implementation: Implementation.Stateless7702,
     address: signerAddress as `0x${string}`,
     signer: { walletClient },

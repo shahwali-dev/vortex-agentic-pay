@@ -44,8 +44,8 @@ export function useSmartAccount() {
       const hash = await bundlerClient.sendUserOperation({
         account: smartAccount,
         calls: [{ to: toAddress as `0x${string}`, value: parseEther(value) }],
-        maxFeePerGas: 1_000_000_000n,
-        maxPriorityFeePerGas: 1_000_000_000n,
+        maxFeePerGas: BigInt(1_000_000_000),
+        maxPriorityFeePerGas: BigInt(1_000_000_000),
       });
       
       console.log('User operation sent! Hash:', hash);

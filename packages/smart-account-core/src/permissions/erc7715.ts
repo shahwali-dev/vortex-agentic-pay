@@ -12,7 +12,7 @@ export async function requestPeriodicPermission(
 ) {
   const walletClient = createWalletClient({
     chain: baseSepolia,
-    transport: custom(window.ethereum),
+    transport: custom((window as any).ethereum),
   }).extend(erc7715ProviderActions());
 
   const currentTime = Math.floor(Date.now() / 1000);
@@ -46,7 +46,7 @@ export async function requestAllowancePermission(
 ) {
   const walletClient = createWalletClient({
     chain: baseSepolia,
-    transport: custom(window.ethereum),
+    transport: custom((window as any).ethereum),
   }).extend(erc7715ProviderActions());
 
   const currentTime = Math.floor(Date.now() / 1000);
@@ -76,7 +76,7 @@ export async function requestAllowancePermission(
 export async function getGrantedPermissions() {
   const walletClient = createWalletClient({
     chain: baseSepolia,
-    transport: custom(window.ethereum),
+    transport: custom((window as any).ethereum),
   }).extend(erc7715ProviderActions());
 
   return await walletClient.getGrantedExecutionPermissions();
@@ -85,7 +85,7 @@ export async function getGrantedPermissions() {
 export async function getSupportedPermissions() {
   const walletClient = createWalletClient({
     chain: baseSepolia,
-    transport: custom(window.ethereum),
+    transport: custom((window as any).ethereum),
   }).extend(erc7715ProviderActions());
 
   return await walletClient.getSupportedExecutionPermissions();

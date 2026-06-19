@@ -1,6 +1,14 @@
 import { createWalletClient, custom } from 'viem';
 import { baseSepolia } from 'viem/chains';
 
+declare global {
+  interface Window {
+    ethereum?: {
+      request: <T = unknown>(args: { method: string }) => Promise<T>;
+    };
+  }
+}
+
 export const getWalletClient = async () => {
   if (typeof window === 'undefined') {
     throw new Error('Window object not available (server-side)');
@@ -10,7 +18,7 @@ export const getWalletClient = async () => {
     throw new Error('MetaMask Flask not installed. Please install MetaMask Flask extension.');
   }
   
-  const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+  const accounts = await window.ethereum.request<`0x${string}`[]>({ method: 'eth_requestAccounts' });
   
   const walletClient = createWalletClient({
     account: accounts[0] as `0x${string}`,
